@@ -43,10 +43,7 @@ def test_check():
     WebDriverWait(driver, 10).until(
         EC.title_contains("Google")
     )
-    # Store screenshot
-    # timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    # filename = f"logs/test_check_{timestamp}.png"
-    # To check conftest
+
 
     filename_stamp = helpers.store_screenshot(driver,name="test_setup")
     logger.info("Before verification Test")
@@ -92,39 +89,3 @@ def test_check():
     driver.quit()
 
 
-def xtest_login_valid(driver):
-    # Wait for and find the email input by aria-label
-    email_input = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, '[aria-label="Email"]'))
-    )
-    email_input.send_keys(config.VALID_USERNAME)
-
-    # Find the password input by ID
-    password_input = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, '[aria-label="Password"]'))
-    )
-    password_input.send_keys(config.VALID_PASSWORD)
-
-    # Optionally, submit the form
-    # Assuming there's a submit button with aria-label="Login"
-    submit_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.CSS_SELECTOR, '[aria-label="Login"]'))
-    )
-    submit_button.click()
-#
-# def test_login_valid(driver):
-#     driver.find_element(By.ARIA_LABLE, 'Email').send_keys(config.VALID_USERNAME)  # Replace 'username' with actual element selector
-#     driver.find_element(By.ID, 'Password').send_keys(config.VALID_PASSWORD)  # Replace 'password' with actual element selector
-#     driver.find_element(By.CLASS_NAME, 'submit').click()  # Replace 'submit' with actual element selector
-#
-#     # Add assertions to verify login success
-#     assert 'Dashboard' in driver.title  # Example: checking the title after login
-
-"""def test_login_invalid(driver):
-    driver.find_element(By.NAME, 'username').send_keys('invalid_user')
-    driver.find_element(By.NAME, 'password').send_keys('invalid_pass')
-    driver.find_element(By.NAME, 'submit').click()
-
-    # Add assertions to verify login failure
-    assert 'Invalid credentials' in driver.page_source  # Example: checking for error message
-"""
